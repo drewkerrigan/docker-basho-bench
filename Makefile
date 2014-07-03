@@ -6,7 +6,7 @@ build:
 	./bin/build.sh
 
 start:
-	./bin/start.sh
+	./bin/start.sh $TESTS
 
 debug:
 	./bin/start.sh debug

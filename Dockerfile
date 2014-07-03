@@ -1,4 +1,4 @@
-# BashoBench
+l# BashoBench
 
 FROM phusion/baseimage:0.9.9
 MAINTAINER Drew Kerrigan dkerrigan@basho.com
@@ -20,9 +20,11 @@ RUN cd /opt/basho_bench && make all
 # Setup the Basho Bench scripts & configs
 RUN mkdir -p /opt/basho_bench/tests
 RUN mkdir -p /opt/basho_bench/reports
+RUN mkdir -p /opt/basho_bench/bin
+RUN mkdir -p /opt/basho_bench/config
 
-ADD files/config /opt/basho_bench
-ADD files/bin /opt/basho_bench/
+ADD files/config /opt/basho_bench/config
+ADD files/bin /opt/basho_bench/bin
 ADD files/priv/summary.r /opt/basho_bench/priv/summary.r
 
 # Workaround for the first run of make results failing

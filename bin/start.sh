@@ -1,6 +1,5 @@
 #! /bin/bash
 
-tests=$@
 timestamp=$(date +%s)
 
 if docker ps -a | grep "drewkerrigan/basho-bench" >/dev/null; then
@@ -11,7 +10,7 @@ if docker ps -a | grep "drewkerrigan/basho-bench" >/dev/null; then
   echo ""
   echo "  make stop"
   echo "    or"
-  echo "  make stop-docker-basho-bench"
+  echo "  make stop-bench"
   echo ""
 
   exit 1
@@ -25,11 +24,11 @@ if [ ! -z $1 ]
 then 
     docker run -P --link riak:riak -i drewkerrigan/basho-bench /opt/basho_bench/bin/run_test.sh \
       $timestamp \
-      $tests #debug
+      $TESTS #debug
 else
     docker run -P --link riak:riak -d drewkerrigan/basho-bench /opt/basho_bench/bin/run_test.sh \
       $timestamp \
-      $tests \
+      $TESTS \
       > /dev/null 2>&1
 fi
 
